@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geriani Jean Baptiste - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(0, 255, 136, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #00ff88;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            color: #b0b0b0;
+            margin-bottom: 20px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: #00ff88;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid #00ff88;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .contact-links a:hover {
+            background: #00ff88;
+            color: #0a0e27;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #00ff88;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00ff88;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+            border-color: #00ff88;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: rgba(0, 255, 136, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00ff88;
+            font-size: 3em;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 30px;
+        }
+
+        .project-card h3 {
+            color: #00ff88;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .project-card p {
+            color: #c0c0c0;
+            margin-bottom: 15px;
+        }
+
+        .read-more-btn {
+            background: rgba(0, 255, 136, 0.1);
+            color: #00ff88;
+            border: 1px solid #00ff88;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+
+        .read-more-btn:hover {
+            background: #00ff88;
+            color: #0a0e27;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: rgba(0, 255, 136, 0.1);
+            color: #00ff88;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .add-project-btn {
+            background: #00ff88;
+            color: #0a0e27;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .add-project-btn:hover {
+            background: #00cc6e;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: #1a1f3a;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 900px;
+            width: 90%;
+            border: 1px solid #00ff88;
+            margin: 20px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-content h3 {
+            color: #00ff88;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .detail-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .modal-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .btn-cancel {
+            background: #555;
+            color: #fff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Geriani Jean Baptiste</h1>
+            <p class="tagline">Computer Technology Student @ Bowie State University | Class of 2026 | Aspiring Network & Cybersecurity Professional
+</p>
+            <div class="contact-links">
+                <a href="mailto:grnibap@gmail.com">Email</a>
+                <a href="https://www.linkedin.com/in/geriani-jean-baptiste-97834787/" target="_blank">LinkedIn</a>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2>About Me</h2>
+            <p style="color: #c0c0c0; font-size: 1.1em; line-height: 1.8;">
+                Dedicated technology student with a focus on Network Engineering and Cybersecurity. Currently pursuing my degree at Bowie State University, where I'm building hands-on experience with network protocols, security tools, configurations and infrastructure management.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Projects</h2>
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Network Threat Detection Project -->
+                <div class="project-card" onclick='viewProject({"title":"Network Threat Detection","description":"This project demonstrates hands-on experience with network monitoring, traffic analysis, and basic security observation using wireshark and nmap. The goal was to observe real network behavior, understand how devices communicate over a network and identify open ports and services that could present security risks if not configured correctly.","tags":[],"images":[{"name":"WiFi Capture","url":"https://i.imgur.com/k1TkOoP.png","caption":"This image shows a WIFI packet capture where Wireshark automatically identifies TCP retransmissions and duplicate acknowledgments. This helps identify network performance issues, such as latency or packet loss, during network activity."},{"name":"Command Prompt Failed Authentication","url":"https://i.imgur.com/8dkPJoB.png","caption":"This screenshot shows a failed authentication attempt using net use command to access a network administrative share. An incorrect username and password were intentionally used to see how windows responds to failed login attempts. This activity help demonstrate how authentication failures create system errors."},{"name":"Nmap SYN Scan","url":"https://i.imgur.com/x9oT8G6.png","caption":"This scan shows a tcp syn scan performed using nmap against the local host and this scan identifies open tcp ports and services running on the system."},{"name":"TCP SYN Only Traffic","url":"https://i.imgur.com/jYuJ4vT.png","caption":"This screenshot shows tcp syn packets being captured in wireshark using the filter tcp.flags.syn == 1 && tcp.flags.ack == 0. This traffic represents connection attempts where sessions were initiated but not fully established."},{"name":"TCP Analysis Flags","url":"https://i.imgur.com/CwQInxG.png","caption":"The screenshot shows wireshark analysis flags such as retransmissions, duplicate acknowledgments and connection stability checks."},{"name":"DNS Traffic","url":"https://i.imgur.com/8WvEesr.png","caption":"This screenshot shows dns traffic captured in wireshark using a dns filter. this capture shows standard dns queries and responses over udp port 53 while the system resolves domain names like google and github."}],"readme":""})'>
+                    <div class="project-image">
+                        <img src="https://i.imgur.com/k1TkOoP.png" alt="Network Threat Detection">
+                    </div>
+                    <div class="project-content">
+                        <h3>Network Threat Detection</h3>
+                        <p>This project demonstrates hands-on experience with network monitoring, traffic analysis, and basic security observation using wireshark and nmap.</p>
+                        <div class="tags"></div>
+                        <button class="read-more-btn" onclick="event.stopPropagation();">Read More</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 Geriani Jean Baptiste. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Project Detail Modal -->
+    <div class="modal detail-modal" id="detailModal">
+        <div class="modal-content">
+            <div id="detailContent"></div>
+            <div class="modal-buttons">
+                <button type="button" class="btn-cancel" onclick="closeDetailModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function closeDetailModal() {
+            document.getElementById('detailModal').style.display = 'none';
+        }
+
+        function viewProject(project) {
+            const modal = document.getElementById('detailModal');
+            const content = document.getElementById('detailContent');
+            
+            // Handle multiple images or single image
+            let imageHTML = '';
+            if (project.images && project.images.length > 0) {
+                imageHTML = project.images.map(img => `
+                    <div style="margin-bottom: 30px;">
+                        <img src="${img.url}" alt="${img.name}" class="detail-image">
+                        <h4 style="color: #00ff88; margin: 15px 0 10px 0;">${img.name}</h4>
+                        <p style="color: #c0c0c0; line-height: 1.6;">${img.caption}</p>
+                    </div>
+                `).join('');
+            } else if (project.image) {
+                imageHTML = `<img src="${project.image}" alt="${project.title}" class="detail-image">`;
+            }
+            
+            const tagsHTML = project.tags && project.tags.length > 0 
+                ? project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')
+                : '';
+
+            content.innerHTML = `
+                <h3>${project.title}</h3>
+                <p style="color: #c0c0c0; font-size: 1.1em; line-height: 1.8; margin-bottom: 20px;">
+                    ${project.description}
+                </p>
+                ${tagsHTML ? `<div class="tags" style="margin-bottom: 20px;">${tagsHTML}</div>` : ''}
+                ${imageHTML}
+            `;
+            
+            modal.style.display = 'flex';
+        }
+
+        window.onclick = function(e) {
+            const detailModal = document.getElementById('detailModal');
+            if (e.target === detailModal) {
+                closeDetailModal();
+            }
+        }
+    </script>
+</body>
+</html>
